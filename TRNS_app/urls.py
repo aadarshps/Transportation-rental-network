@@ -10,6 +10,7 @@ urlpatterns = [
     path('customerpage',views.customerpage,name='customerpage'),
     path('owner_reg',views.owner_reg,name='owner_reg'),
     path('ownerpage',views.ownerpage,name='ownerpage'),
+    path('logout_view',views.logout_view,name='logout_view'),
 
 
     path('view_customers',admin_views.view_customers,name='view_customers'),

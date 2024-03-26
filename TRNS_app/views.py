@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 from TRNS_app.forms import UserReg, Customer_reg, OwnerForm
@@ -72,3 +72,7 @@ def customerpage(request):
 
 def ownerpage(request):
     return render(request,'ownerpage.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')

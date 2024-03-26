@@ -1,0 +1,57 @@
+{% extends 'adminpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card">
+<div class="card">
+
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">CUSTOMER DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th scope="col">SI NO</th>
+        <th scope="col">OWNER NAME</th>
+        <th scope="col">VEHICLE TYPE</th>
+        <th scope="col">BRAND</th>
+        <th scope="col">NAME</th>
+        <th scope="col">YEAR</th>
+        <th scope="col">CONDITION</th>
+        <th scope="col">FUEL TYPE</th>
+        <th scope="col">RENT AMOUNT</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">RC BOOK</th>
+        <th scope="col">INSURANCE END DATE</th>
+        <th scope="col">DELETE</th>
+<!--        <th scope="col">ACTION</th>-->
+    </tr>
+                </thead>
+                <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.owner_name}}</td>
+        <td>{{i.vehicle_type}}</td>
+        <td>{{i.Brand}}</td>
+        <td>{{i.Name}}</td>
+        <td>{{i.year}}</td>
+        <td>{{i.condition}}</td>
+        <td>{{i.Fuel_type}}</td>
+        <td>{{i.Rent_Amount}}</td>
+        <td><img src="{{i.Image.url}}" height="100px"> </td>
+        <td><img src="{{i.RC_book.url}}" height="100px"> </td>
+        <td>{{i.Insurance_EndDate}}</td>
+        <td><a href="{% url 'del_vehicle' i.id %}">Delete</a></td>
+
+
+    </tr>
+    {% endfor %}
+                </tbody>
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}

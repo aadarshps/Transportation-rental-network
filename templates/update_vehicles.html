@@ -1,0 +1,17 @@
+{% extends 'ownerpage.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card" style="width:34rem">
+    <div class="card-body">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+    {{form|crispy}}
+        </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+    </div>
+</div>
+{% endblock %}

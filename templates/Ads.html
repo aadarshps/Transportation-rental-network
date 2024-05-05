@@ -1,0 +1,22 @@
+{% extends 'customerpage.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    {% for i in data %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <img src="{{ i.Image.url }}" class="card-img-top" alt="{{ i.full_name }}"height="200 px">
+        <div class="card-body">
+          <h5 class="card-title">{{ i.full_name }}</h5>
+          <p class="card-text">Discover more about {{ i.full_name }}!</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

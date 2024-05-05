@@ -20,7 +20,7 @@ def loginpage(request):
         elif user is not None and user.is_customer:
             if user.customer.approval_status == 1:
                 login(request, user)
-                return redirect('customerpage')
+                return redirect('viewAds')
             else:
                 messages.info(request, "Your Are Not Approved To Login")
         elif user is not None and user.is_owner:

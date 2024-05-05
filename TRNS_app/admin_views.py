@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from TRNS_app.forms import VehicleForm, ChatFormCUS
-from TRNS_app.models import Customer, Vehicles, BookVehicle, CHAT_CUS, Feedback, Owner
+from TRNS_app.forms import VehicleForm, ChatFormCUS, PaymentsForm
+from TRNS_app.models import Customer, Vehicles, BookVehicle, CHAT_CUS, Feedback, Owner, Payments
 
 
 def view_customers(request):
@@ -23,10 +23,22 @@ def approve_cus(request,id):
     messages.info(request, 'approved')
     return redirect('view_customers')
 
+def approve_owe(request,id):
+    cus = Owner.objects.get(user_id=id)
+    cus.approval_status = True
+    cus.save()
+    messages.info(request, 'approved')
+    return redirect('view_owners')
+
 def del_cus(request,id):
     data = Customer.objects.get(user_id=id)
     data.delete()
     return redirect('view_customers')
+
+def del_owe(request,id):
+    data = Owner.objects.get(user_id=id)
+    data.delete()
+    return redirect('view_owners')
 
 
 
@@ -79,7 +91,7 @@ def reject_booking(request, id):
         book.save()
         messages.info(request, 'Vehicle Booking rejected')
         return redirect('bookings')
-    return render(request, 'reject_booking.html')
+    return render(request, 'reject_bookings.html')
 
 
 
@@ -118,3 +130,17 @@ def reply_Feedback(request, id):
         messages.info(request, 'Reply send for complaint')
         return redirect('Feedback_CUS')
     return render(request, 'reply_Feedback.html', {'feedback': f})
+
+def Payment(request):
+    form = PaymentsForm()
+    if request.method == 'POST':
+        form = PaymentsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.info(request,"Payment Added")
+            return redirect('Payment_view')
+    return render(request,'Payment_add.html',{'form':form})
+
+def Payment_view(request):
+    data = Payments.objects.all()
+    return render(request,'Payment_views.html',{'data':data})

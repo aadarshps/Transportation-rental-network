@@ -6,7 +6,7 @@
 <div class="card">
 
         <div class="card-header  bg-primary">
-            <strong class="card-title " style="color:white">CUSTOMER DETAILS</strong>
+            <strong class="card-title " style="color:white">OWNER DETAILS</strong>
         </div>
         <div class="card-body">
             <table class="table">
@@ -30,14 +30,14 @@
         <td><img src="{{i.Id_Proof.url}}" height="100px"></td>
         <td>
              {% if i.approval_status == 0 %}
-            <a class="btn-sm btn btn-secondary " href="#">Approve</a>
+            <a class="btn-sm btn btn-secondary " href="{% url 'approve_owe' i.user_id %}">Approve</a>
             {% elif i.approval_status == 1 %}
             <button class="btn-sm btn btn-primary">Approved</button>
             {% else %}
             <button class="btn-sm btn btn-warning ">Rejected</button>
             {% endif %}
         </td>
-        <td><a href="#" class="btn btn-danger">Remove {{i.Name}}</a></td>
+        <td><a href="{% url 'del_owe' i.user_id %}" class="btn btn-danger">Remove {{i.Name}}</a></td>
 
     </tr>
     {% endfor %}

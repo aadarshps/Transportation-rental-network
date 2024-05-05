@@ -99,3 +99,11 @@ class Rent(models.Model):
     Name_on_the_card=models.CharField(max_length=50)
     Amount=models.CharField(max_length=100)
     date=models.DateField(auto_now=True)
+
+class Payments(models.Model):
+    owner_name = models.ForeignKey(Owner,on_delete=models.CASCADE)
+    Amount = models.CharField(max_length=10,null=True,blank=True)
+    card_number = models.CharField(max_length=16)
+    expiry = models.CharField(max_length=10)
+    cvv = models.CharField(max_length=3)
+    date = models.DateField(auto_now=True)

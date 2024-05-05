@@ -89,3 +89,9 @@ def pay_rent_fee(request):
 def payment_view(request):
     data=Rent.objects.all()
     return render(request,'payment_view.html',{'data':data})
+
+
+
+def viewAds(request):
+    data = Vehicles.objects.all()
+    return render(request,'Ads.html',{'data':data})

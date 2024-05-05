@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.shortcuts import redirect, render
 
 from TRNS_app.forms import VehicleForm
-from TRNS_app.models import Vehicles, Owner, BookVehicle
+from TRNS_app.models import Vehicles, Owner, BookVehicle, Payments
 
 
 def vehicle_add(request):
@@ -45,3 +45,8 @@ def del_vehicle_ow(request,id):
 def booking_view(request):
     data = BookVehicle.objects.all()
     return render(request,'booking_view.html',{'data':data})
+
+def Ad_payment(request):
+    u=Owner.objects.get(user=request.user)
+    data = Payments.objects.filter(owner_name=u)
+    return render(request,'Ad_payment.html',{'data':data})

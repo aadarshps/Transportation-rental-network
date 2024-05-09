@@ -107,3 +107,13 @@ class Payments(models.Model):
     expiry = models.CharField(max_length=10)
     cvv = models.CharField(max_length=3)
     date = models.DateField(auto_now=True)
+
+months = [
+    ('1 month','1 month'),
+    ('2 month','2 month'),
+    ('3 month','3 month'),
+]
+class Subscription(models.Model):
+    vehicle = models.ForeignKey(Vehicles,on_delete=models.CASCADE)
+    Months = models.CharField(max_length=100,choices=months)
+    amount = models.CharField(max_length=100)

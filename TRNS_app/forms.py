@@ -3,7 +3,8 @@ import datetime
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from TRNS_app.models import User, Customer, Vehicles, BookVehicle, CHAT_CUS, CHAT_AD, Feedback, Owner, Rent, Payments
+from TRNS_app.models import User, Customer, Vehicles, BookVehicle, CHAT_CUS, CHAT_AD, Feedback, Owner, Rent, Payments, \
+    Subscription
 
 
 class DateInput(forms.DateInput):
@@ -72,4 +73,9 @@ class PaymentForm(forms.ModelForm):
 class PaymentsForm(forms.ModelForm):
     class Meta:
         model = Payments
+        fields = '__all__'
+
+class subform(forms.ModelForm):
+    class Meta:
+        model=Subscription
         fields = '__all__'

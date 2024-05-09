@@ -1,0 +1,34 @@
+{% extends 'ownerpage.html' %}
+{% block content %}
+
+<div class="card">
+<div class="card">
+        <div class="card-header  bg-primary">
+            <strong class="card-title " style="color:white">SUBSCRIPTION DETAILS</strong>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+    <tr>
+        <th scope="col">SI NO</th>
+        <th scope="col">VEHICLE NAME</th>
+        <th scope="col">MONTHS</th>
+        <th scope="col">AMOUNT</th>
+    </tr>
+                </thead>
+                <tbody>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.vehicle}}</td>
+        <td>{{i.Months}}</td>
+        <td>{{i.amount}}</td>
+    </tr>
+    {% endfor %}
+                </tbody>
+</table>
+</div>
+</div>
+</div>
+
+{% endblock %}

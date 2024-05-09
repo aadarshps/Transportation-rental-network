@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-from TRNS_app.forms import CustomerBookVehicleForm, ChatFormCUS, FeedbackForm, PaymentForm
-from TRNS_app.models import Vehicles, Customer, BookVehicle, CHAT_CUS, Feedback, Rent
+from TRNS_app.forms import CustomerBookVehicleForm, ChatFormCUS, FeedbackForm, PaymentForm, subform
+from TRNS_app.models import Vehicles, Customer, BookVehicle, CHAT_CUS, Feedback, Rent, Subscription
 
 
 def view_vehi(request):
@@ -95,3 +95,19 @@ def payment_view(request):
 def viewAds(request):
     data = Vehicles.objects.all()
     return render(request,'Ads.html',{'data':data})
+
+def add_sub(request):
+    u=request.user
+    form = subform()
+    if request.method=='POST':
+        form=subform(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            data.user=u
+            data.save()
+            return redirect('sub_view')
+    return render(request,'add_sub.html',{'form':form})
+
+def sub_view(request):
+    data = Subscription.objects.all()
+    return render(request,'sub_view.html',{'data':data})

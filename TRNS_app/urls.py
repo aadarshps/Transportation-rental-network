@@ -42,6 +42,8 @@ urlpatterns = [
     path('pay_rent_fee',customer_views.pay_rent_fee,name='pay_rent_fee'),
     path('payment_view',customer_views.payment_view,name='payment_view'),
     path('viewAds',customer_views.viewAds,name='viewAds'),
+    path('add_sub',customer_views.add_sub,name='add_sub'),
+    path('sub_view',customer_views.sub_view,name='sub_view'),
 
 
     path('vehicle_add',ownerviews.vehicle_add,name='vehicle_add'),
@@ -50,4 +52,5 @@ urlpatterns = [
     path('del_vehicle_ow/<int:id>/',ownerviews.del_vehicle_ow,name='del_vehicle_ow'),
     path('booking_view',ownerviews.booking_view,name='booking_view'),
     path('Ad_payment',ownerviews.Ad_payment,name='Ad_payment'),
+    path('view_subscription',ownerviews.view_subscription,name='view_subscription'),
 ]
